@@ -1,44 +1,17 @@
-# observer
+# Observer pattern
 
-A behavioral design pattern implementation in TypeScript.
+The observer pattern is a behavioral pattern that allows pieces of the project react to certain events.
 
-## Getting Started
+Imagine you want to notify a group of users that a new post has been created.
 
-```bash
-# Install dependencies
-pnpm install
+The flow to create the post remain with a single purpose -- create a post -- then you triggers the event
+"POST_CREATED" after creation.
 
-# Run in development mode (with hot reload)
-pnpm dev
+The code responsible to notify the users will listen to the event "POST_CREATED", when the event is received
+the notification will be sent.
 
-# Build for production
-pnpm build
+### Issue
 
-# Run production build
-pnpm start
-
-# Type check
-pnpm type-check
-
-# Clean build artifacts
-pnpm clean
-```
-
-## Pattern Description
-
-TODO: Add description of the behavioral pattern being implemented.
-
-## Implementation
-
-The pattern is implemented in `src/main.ts`.
-
-## Project Structure
-
-```
-src/
-└── main.ts          # Main entry point
-dist/                # Compiled JavaScript (generated)
-package.json         # Dependencies and scripts
-tsconfig.json        # TypeScript configuration
-README.md           # This file
-```
+In scenarios where a lot of parts of the system needs to react to something, instead of each of this parts checking if "something" has happened,
+they just listens for someone to notify them that something has changed. Or even, when you have to do something that is not totally related to the main execution, just like
+the example above with post creation. Sending notification is not crucial for post creation, then we can delegate it to be handled by an event.

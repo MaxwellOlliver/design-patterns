@@ -1,5 +1,5 @@
-## Design Patterns
+# Design Patterns
 
-This repo is my study on the most used design patterns.
+This repository contains my study of the most commonly used design patterns.
 
-All the source is from the [Refactoring Guru Website](https://refactoring.guru/design-patterns/what-is-pattern)
+The study material is from the [Refactoring Guru Website](https://refactoring.guru/design-patterns/what-is-pattern).
