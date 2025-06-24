@@ -1,19 +1,19 @@
-// behavioral pattern: observer
-console.log('🚀 Starting observer...');
+import { BinanceAPI } from "./criptocurrency/BinanceAPI";
+import { Bitcoin } from "./criptocurrency/Bitcoin";
+import { BitcoinPriceLogger } from "./service/BitcoinPriceLogger";
+import { InvestorNotifier } from "./service/InvestorNotifier";
+import { NewsPlatform } from "./service/NewsPlatform";
 
-// TODO: Implement your design pattern here
-class Example {
-  constructor() {
-    console.log('Example class created');
-  }
-  
-  public doSomething(): void {
-    console.log('Doing something...');
-  }
-}
+const bitcoin = new Bitcoin();
+const binanceAPI = new BinanceAPI();
+const bitcoinPriceLogger = new BitcoinPriceLogger();
+const investorNotifier = new InvestorNotifier();
+const newsPlatform = new NewsPlatform();
 
-// Example usage
-const example = new Example();
-example.doSomething();
+bitcoin.addObserver(bitcoinPriceLogger);
+bitcoin.addObserver(investorNotifier);
+bitcoin.addObserver(newsPlatform);
 
-console.log('✅ observer completed!');
+await bitcoin.setPrice(binanceAPI.getLastPrice());
+await bitcoin.setPrice(binanceAPI.getLastPrice());
+console.log(`Bitcoin price: ${bitcoin.getPrice()}`);
