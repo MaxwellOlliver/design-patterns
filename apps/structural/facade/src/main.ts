@@ -1,19 +1,13 @@
-// structural pattern: facade
-console.log("🚀 Starting facade...");
+import express from "express";
+import { OrderController } from "./controllers/order-controller";
 
-// TODO: Implement your design pattern here
-class Example {
-  constructor() {
-    console.log("Example class created");
-  }
+const app = express();
+const orderController = new OrderController();
 
-  public doSomething(): void {
-    console.log("Doing something...");
-  }
-}
+app.use(express.json());
 
-// Example usage
-const example = new Example();
-example.doSomething();
+app.post("/order", orderController.processOrder);
 
-console.log("✅ facade completed!");
+app.listen(3000, () => {
+  console.log("Server is running on port 3000");
+});
