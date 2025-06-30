@@ -7,6 +7,7 @@ export class Logger {
 
   public static getInstance(): Logger {
     if (!Logger.instance) {
+      console.log("Creating new instance of Logger");
       Logger.instance = new Logger();
     }
     return Logger.instance;
@@ -17,6 +18,11 @@ export class Logger {
     const logFile = `app-logs.log`;
     const logMessage = `[${timestamp}] ${message}\n`;
 
-    fs.appendFileSync(path.join(__dirname, logFile), logMessage);
+    const logsDir = "logs";
+    fs.mkdirSync(logsDir, { recursive: true });
+
+    fs.appendFileSync(path.join(logsDir, logFile), logMessage, {
+      flag: "a",
+    });
   }
 }

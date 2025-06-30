@@ -1,19 +1,12 @@
-// creational pattern: singleton
-console.log('🚀 Starting singleton...');
+import { Logger } from "./logger";
 
-// TODO: Implement your design pattern here
-class Example {
-  constructor() {
-    console.log('Example class created');
-  }
-  
-  public doSomething(): void {
-    console.log('Doing something...');
-  }
+const logger = Logger.getInstance();
+
+function doSomething() {
+  const logger = Logger.getInstance();
+  logger.log("Logger from doSomething");
 }
 
-// Example usage
-const example = new Example();
-example.doSomething();
+logger.log("Logger from main");
 
-console.log('✅ singleton completed!');
+doSomething();
