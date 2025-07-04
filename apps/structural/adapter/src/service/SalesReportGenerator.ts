@@ -4,6 +4,6 @@ export class SalesReportGenerator {
   constructor(private pdfAdapter: PDFAdapter) {}
 
   generate() {
-    this.pdfAdapter.generate();
+    this.pdfAdapter.generate("sales-report.pdf", "Sales Report");
   }
 }

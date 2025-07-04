@@ -1,3 +1,3 @@
 export interface PDFAdapter {
-  generate(): void;
+  generate(filename: string, data: any): void;
 }
