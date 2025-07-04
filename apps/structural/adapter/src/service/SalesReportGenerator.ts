@@ -1,19 +1,9 @@
-import PDFDocument from "pdfkit";
-import fs from "fs";
+import { PDFAdapter } from "./pdf.adapter";
 
 export class SalesReportGenerator {
+  constructor(private pdfAdapter: PDFAdapter) {}
+
   generate() {
-    const doc = new PDFDocument({
-      size: "A4",
-    });
-
-    doc.text("Sales Report", 16, 16, {
-      align: "center",
-      underline: true,
-    });
-    doc.end();
-    doc.pipe(fs.createWriteStream("sales-report.pdf"));
-
-    return doc;
+    this.pdfAdapter.generate();
   }
 }
