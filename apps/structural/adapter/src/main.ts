@@ -1,19 +1,7 @@
-// structural pattern: adapter
-console.log('🚀 Starting adapter...');
+import { SalesReportGenerator } from "./service/SalesReportGenerator";
 
-// TODO: Implement your design pattern here
-class Example {
-  constructor() {
-    console.log('Example class created');
-  }
-  
-  public doSomething(): void {
-    console.log('Doing something...');
-  }
-}
+const salesReportGenerator = new SalesReportGenerator();
 
-// Example usage
-const example = new Example();
-example.doSomething();
+const salesReport = salesReportGenerator.generate();
 
-console.log('✅ adapter completed!');
+console.log(salesReport);
