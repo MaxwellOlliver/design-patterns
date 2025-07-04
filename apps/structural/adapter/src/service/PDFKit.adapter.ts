@@ -1,8 +1,8 @@
 import PDFDocument from "pdfkit";
-import { PDFAdapter } from "./pdf.adapter";
+import { PDFPort } from "./pdf.port";
 import fs from "fs";
 
-export class PDFKitAdapter implements PDFAdapter {
+export class PDFKitAdapter implements PDFPort {
   generate(filename: string, data: any): void {
     const doc = new PDFDocument({
       size: "A4",

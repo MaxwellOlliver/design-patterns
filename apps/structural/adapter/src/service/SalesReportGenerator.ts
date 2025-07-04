@@ -1,7 +1,7 @@
-import { PDFAdapter } from "./pdf.adapter";
+import { PDFPort } from "./pdf.port";
 
 export class SalesReportGenerator {
-  constructor(private pdfAdapter: PDFAdapter) {}
+  constructor(private pdfAdapter: PDFPort) {}
 
   generate() {
     this.pdfAdapter.generate("sales-report.pdf", "Sales Report");
