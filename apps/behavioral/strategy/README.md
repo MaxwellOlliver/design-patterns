@@ -1,44 +1,78 @@
-# strategy
+## Strategy Pattern
 
-A behavioral design pattern implementation in TypeScript.
+**Definition:**
+Defines a family of algorithms, encapsulates each one behind a common interface, and makes them interchangeable at runtime without exposing implementation details to the client.
 
-## Getting Started
+Interchangeable: Any concrete implementation of the strategy interface can replace another without altering the context or client code; you can swap strategies dynamically because the context only relies on the common interface.
 
-```bash
-# Install dependencies
-pnpm install
+### 1. Interface
 
-# Run in development mode (with hot reload)
-pnpm dev
-
-# Build for production
-pnpm build
-
-# Run production build
-pnpm start
-
-# Type check
-pnpm type-check
-
-# Clean build artifacts
-pnpm clean
+```java
+interface NotificationStrategy {
+  void send(Notification message);
+}
 ```
 
-## Pattern Description
+All concrete strategies implement this single-method interface to perform the notification.
 
-TODO: Add description of the behavioral pattern being implemented.
+---
 
-## Implementation
+### 2. Concrete Strategies
 
-The pattern is implemented in `src/main.ts`.
+- `EmailNotification` implements `NotificationStrategy`
+- `SmsNotification` implements `NotificationStrategy`
+- `PushNotification` implements `NotificationStrategy`
 
-## Project Structure
+Each class encapsulates the specific logic for sending via its channel.
 
+---
+
+### 3. Context
+
+```java
+class NotificationSender {
+  private NotificationStrategy strategy;
+
+  public NotificationSender(NotificationStrategy strategy) {
+    this.strategy = strategy;
+  }
+
+  public void send(Notification message) {
+    strategy.send(message);
+  }
+}
 ```
-src/
-└── main.ts          # Main entry point
-dist/                # Compiled JavaScript (generated)
-package.json         # Dependencies and scripts
-tsconfig.json        # TypeScript configuration
-README.md           # This file
+
+The context holds a reference to the selected strategy and delegates execution to it.
+
+---
+
+### 4. When to Use
+
+- You need to switch between interchangeable behaviors or algorithms at runtime.
+- You want to adhere to the Open/Closed Principle (OCP) by adding new strategies without modifying existing code.
+
+---
+
+### 5. Benefits
+
+- **Open/Closed Principle:** Easily add new algorithms (strategies) without changing the context or client code.
+- **Single Responsibility:** Each strategy class has one well-defined reason to change.
+- **Runtime Flexibility:** Swap strategies dynamically based on context or configuration.
+
+---
+
+### 6. Drawbacks
+
+- Increases the number of classes and interfaces in the codebase.
+- May introduce unnecessary complexity if there’s only one algorithm.
+
+---
+
+_Example usage:_
+
+```java
+NotificationStrategy strategy = new EmailNotification();
+NotificationSender sender = new NotificationSender(strategy);
+sender.send(orderConfirmation);
 ```
