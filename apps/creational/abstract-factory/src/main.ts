@@ -1,5 +1,5 @@
 import { ComponentFactory } from "./factories/component.factory";
-import { MacosComponentFactory } from "./system-design/factories/macos-component.facory";
+import { MacosComponentFactory } from "./system-design/factories/macos-component.factory";
 import { WindowsComponentFactory } from "./system-design/factories/windows-component.factory";
 
 class Application {
