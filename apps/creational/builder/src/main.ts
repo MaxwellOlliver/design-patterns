@@ -1,19 +1,13 @@
-// creational pattern: builder
-console.log('🚀 Starting builder...');
+import { HttpClient } from "./http-client/http-client";
+import { HttpClientBuilder } from "./http-client/http-client-builder";
 
-// TODO: Implement your design pattern here
-class Example {
-  constructor() {
-    console.log('Example class created');
-  }
-  
-  public doSomething(): void {
-    console.log('Doing something...');
-  }
-}
+const builder = new HttpClientBuilder();
+const client: HttpClient = builder
+  .setBaseUrl("https://api.github.com")
+  .setHeaders({
+    "Content-Type": "application/json",
+  })
+  .build();
 
-// Example usage
-const example = new Example();
-example.doSomething();
-
-console.log('✅ builder completed!');
+const response = await client.get("/users/MaxwellOlliver");
+console.log(response);
